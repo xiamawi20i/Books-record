@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Collection</title>
+</head>
+<body>
+  <h1>Book Collection</h1>
+
+  <h3>Title of the first book</h3>
+  <p id="firstTitle"></p>
+
+  <h3>Author of the second book</h3>
+  <p id="secondAuthor"></p>
+
+  <h3>Genres of all books</h3>
+  <ul id="allGenres"></ul>
+
+  <script>
+    fetch("books.json")
+      .then(response => response.json())
+      .then(data => {
+        const books = data.books;
+
+        // title of the first book
+        document.getElementById("firstTitle").textContent = books[0].title;
+
+        // author of the second book
+        document.getElementById("secondAuthor").textContent = books[1].author;
+
+        // genres of all books
+        const list = document.getElementById("allGenres");
+        books.forEach(book => {
+          const li = document.createElement("li");
+          li.textContent = book.title + ": " + book.genres.join(", ");
+          list.appendChild(li);
+        });
+      })
+      .catch(error => console.error("Error loading JSON:", error));
+  </script>
+</body>
+</html>

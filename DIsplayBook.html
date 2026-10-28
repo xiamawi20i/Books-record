@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Records</title>
+</head>
+
+<body>
+
+    <h1>Book Records</h1>
+
+    <label for="bookSelect">Select a book:</label>
+
+    <select id="bookSelect">
+        <option value="">-- Select a book --</option>
+    </select>
+
+    <div id="bookDetails"></div>
+
+    <script>
+
+        const jsonURL = "https://github.com/xiamawi20i/Books-record/blob/main/Books.json";
+
+
+        const bookSelect = document.getElementById("bookSelect");
+        const bookDetails = document.getElementById("bookDetails");
+
+        fetch(jsonURL)
+            .then(response => response.json())
+            .then(data => {
+
+                // Add book titles to dropdown
+                data.forEach(book => {
+
+                    const option = document.createElement("option");
+
+                    option.textContent = book.title;
+                    option.value = book.title;
+
+                    bookSelect.appendChild(option);
+
+                });
+
+                // Detect selected book
+                bookSelect.addEventListener("change", function() {
+
+                    const selectedTitle = this.value;
+
+                    const selectedBook = data.find(
+                        book => book.title === selectedTitle
+                    );
+
+                    // Display book information
+                    if (selectedBook) {
+
+                        bookDetails.innerHTML = `
+                            <h2>${selectedBook.Title}</h2>
+                            <p>Author: ${selectedBook.Author}</p>
+                            <p>Publication Year: ${selectedBook.PublicationYear}</p>
+                            <p>Genre: ${selectedBook.Genre}</p>
+                        `;
+
+                    } else {
+
+                        bookDetails.innerHTML = "Book not found.";
+
+                    }
+
+                });
+
+            })
+            .catch(error => {
+
+                bookDetails.innerHTML = "Error loading book data.";
+
+                console.error(error);
+
+            });
+
+    </script>
+
+</body>
+</html>
