@@ -1,0 +1,22 @@
+{
+  "Books": [
+    {
+      "Title": "The Great Gatsby",
+      "Author": "F. Scott Fitzgerald",
+      "PublicationYear": 1925,
+      "Genres": ["Fiction", "Classics"]
+    },
+    {
+      "Title": "To Kill a Mockingbird",
+      "Author": "Harper Lee",
+      "PublicationYear": 1960,
+      "Genres": ["Fiction", "Coming-of-Age"]
+    },
+    {
+        "Title":"The Beginning After The End",
+        "Author":" Muhd Musriqul",
+        "PublicationYear":"2009",
+        "Genres":["Fantasy"]
+    }
+  ]
+}
